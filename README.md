@@ -27,7 +27,9 @@ python main.py
 
 5. Open a web browser and navigate to `http://localhost:5000` to access the application.
 
-Please note that this application is intended for local use. If you want to host it on a server, you may need to configure a production-ready server like Gunicorn or uWSGI and set up a reverse proxy with Nginx or Apache. *Also, ensure that you comply with the terms of service of the websites from which you are downloading comics.*
+Please note that this application is intended for local use. If you want to host it on a server, you may need to configure a production-ready server like Gunicorn or uWSGI and set up a reverse proxy with Nginx or Apache. 
+
+*Also, ensure that you comply with the terms of service of the websites from which you are downloading comics.*
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
