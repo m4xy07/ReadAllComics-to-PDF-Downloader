@@ -139,7 +139,9 @@
         
 
         submitButton.addEventListener('click', async (event) => {
-            await delay(5000);
+            await delay(1000);
+            submitButton.value = "Please Wait...";
+            await delay(3000);
             const socket = io.connect('http://' + document.domain + ':' + location.port);
             console.log("Button clicked")
             socket.on('progress', function(msg) {
@@ -155,7 +157,7 @@
                 // Refresh the page 5 seconds after the download starts
                 setTimeout(function() {
                     location.reload();
-                }, 1000);
+                }, 3000);
             });
         });
     </script>
