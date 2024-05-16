@@ -28,12 +28,15 @@
             background-color: #222;
         }
         .footer {
+            background-color: #ffffff00; /* Dark gray background */
+            color: #fff; /* White text */
             position: fixed;
             left: 0;
             bottom: 0;
             width: 100%;
             text-align: center;
-        }
+            padding: 10px 0; /* Add some vertical padding */
+}
         h2, label {
             color: #fff;
         }
@@ -48,12 +51,12 @@
         }
         .progress {
              background-color: #333;
-             border: 1px solid #007bff; /* Blue border */
+             border: 1px solid #007bff; 
              height: 20px;
              border-radius: 3px;
         }
         .progress-bar {
-            background-color: #007bff; /* Blue progress bar */
+            background-color: #4198f5;
         }
     </style>
 </head>
@@ -114,22 +117,22 @@
     <!-- Include the Socket.IO script after the jQuery and Bootstrap scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
     <!-- Vanta.js and its dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-    <script src="https://www.vantajs.com/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
     <script>
-        VANTA.NET({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x333333,
-            backgroundColor: 0x222222
-        });
-    </script>
+        VANTA.WAVES({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: true,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          waveHeight: 26.50,
+          color: 0x1b1d1d
+        })
+        </script>
     <script>
         const socket = io.connect('http://' + document.domain + ':' + location.port);
 
