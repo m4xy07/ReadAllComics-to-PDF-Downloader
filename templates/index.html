@@ -28,14 +28,14 @@
             background-color: #222;
         }
         .footer {
-            background-color: #ffffff00; /* Dark gray background */
-            color: #fff; /* White text */
+            background-color: #ffffff00; 
+            color: #fff; 
             position: fixed;
             left: 0;
             bottom: 0;
             width: 100%;
             text-align: center;
-            padding: 10px 0; /* Add some vertical padding */
+            padding: 10px 0; 
 }
         h2, label {
             color: #fff;
@@ -139,14 +139,14 @@
         
 
         submitButton.addEventListener('click', async (event) => {
-            await delay(1000);
+            await delay(300);
             submitButton.value = "Please Wait...";
-            await delay(3000);
+            await delay(4700);
             const socket = io.connect('http://' + document.domain + ':' + location.port);
-            console.log("Button clicked")
+            //console.log("Button clicked") // Debugging
             socket.on('progress', function(msg) {
                 // Log the progress update to the console
-                console.log('Received progress update:', msg);
+                //console.log('Received progress update:', msg);
 
                 // Update the UI with the progress
                 const progressBar = document.getElementById('progress-bar');
