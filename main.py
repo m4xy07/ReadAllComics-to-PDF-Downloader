@@ -7,7 +7,6 @@ import time
 app = Flask(__name__)
 socketio = SocketIO(app)
 
-# Import handle_entry after socketio is initialized
 from rad import main as handle_entry
 
 def delete_file(path):
@@ -53,9 +52,15 @@ def home():
         url = request.form.get('url')
         name = request.form.get('name')  
         print(f"Calling handle_entry with url={url}, name={name}")
-        result = handle_entry(url, name, socketio, lambda pdf_path: handle_entry_callback(pdf_path, name))
-        if result is not None:
-            return result
+        try:
+            # Emit the 'download_started' event
+            socketio.emit('download_started', {'message': 'Download started'})
+
+            result = handle_entry(url, name, socketio, lambda pdf_path: handle_entry_callback(pdf_path, name))
+            if result is not None:
+                return result
+        except AssertionError:
+            return "Are you sure the URL to the comic is correct?"
 
     return render_template('index.html')
 

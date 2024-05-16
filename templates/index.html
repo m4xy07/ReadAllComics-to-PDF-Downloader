@@ -8,37 +8,26 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
     <script>
-        // Establish the Socket.IO connection as soon as the script is loaded
         const socket = io.connect('http://' + document.domain + ':' + location.port);
-        let downloadInProgress = false;
-
+    
+        socket.on('download_started', function(msg) {
+            // Refresh the page 5 seconds after the download starts
+            setTimeout(function() {
+                location.reload();
+            }, 5000);
+        });
+    
         document.addEventListener('DOMContentLoaded', (event) => {
             socket.on('progress', function(msg) {
                 // Log the progress update to the console
                 console.log('Received progress update:', msg);
-
+    
                 // Update the UI with the progress
                 const progressBar = document.getElementById('progress-bar');
                 progressBar.style.width = `${msg.progress * 100}%`;
                 progressBar.innerText = `${Math.round(msg.progress * 100)}%`;
             });
-
-            socket.on('download_started', function(msg) {
-                // Set the download flag
-                downloadInProgress = true;
-            });
         });
-
-        // Add this script to refresh the page after a delay
-        window.onload = function() {
-            // Check if a download is in progress
-            if (downloadInProgress) {
-                // Wait 5 seconds before refreshing the page
-                setTimeout(function() {
-                    location.reload();
-                }, 5000);
-            }
-        }
     </script>
 </head>
 <body>
