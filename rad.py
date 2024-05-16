@@ -58,13 +58,7 @@ def make_status_string(
     current_progress: int,
     max_progress: int,
 ) -> str:
-    """
-    Takes an instance of the Status enum that represents what the script is currently doing
-    as well as an int step_num that represents the progress of the script (e.g. the i-th
-    step in the overall process). Additionally the title of the comic that is currently
-    processed as well as the two measures that are actually used for the creation of the
-    progress bar (current_progress & max_progress).
-    """
+
     res = (
         title.ljust(40)
         + current_status.value.center(STATUS_LEN)
@@ -75,9 +69,6 @@ def make_status_string(
 
 def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
     """
-    takes the url of a comic as well as the name that should
-    be displayed in the progress bar and under which the final pdf
-    is going to be stored.
     First all images for the current comic are downloaded, then the script
     takes a best-effort approach to removing all readallcomics.com banners[1] and finally
     the pages are put together in a uniform format and exported as a pdf.
@@ -154,7 +145,7 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
             if DEBUG:
                 print(f"\nCropped {crop_count} images!".ljust(72))
         elif height_a == images[i][0].height:  # so the width changed
-            # here banner is at bottom and 50px high!!
+            
             width_b = images[i][0].width
             banner_height = 50
             banner_width = min(width_a, width_b)
@@ -205,24 +196,19 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
         page_num += 1
     print(make_status_string(Status.EXPORTING, 3, name, 0, 1), end="\r")
     socketio.emit('progress', {'progress': 1, 'status': Status.EXPORTING.value, 'name': name})
-   # pdf_path = f"pdfs/{name}.pdf"
-   # pdf.output(pdf_path)
+
     print(make_status_string(Status.COMPLETE, 4, name, 1, 1))
     socketio.emit('progress', {'progress': 1, 'status': Status.COMPLETE.value, 'name': name})
     print(f"handle_entry called with url={url}, name={name}")
-
-    # At the end, output the PDF and return its path
     pdf_path = f"pdfs/{name}.pdf"
     pdf.output(pdf_path)
-
     # Log the PDF path
-    print(f"handle_entry returning pdf_path={pdf_path}")
+    print(f"handle_entry returning pdf_path={pdf_path}") #for dubugging
 
     if callback is not None:
         callback(pdf_path)
 
     return pdf_path
-    #return os.path.abspath(pdf_path)
 
 
 if __name__ == "__main__":
