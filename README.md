@@ -69,6 +69,7 @@ git clone https://github.com/m4xy07/ReadAllComics-to-PDF-Downloader.git
 ```sh
 cd ReadAllComics-to-PDF-Downloader
 ```
+Note before the next step you may need to create a virtual env 1. `apt install python3.11-venv` 2. `python3 -m venv venv` 3. `source venv/bin/activate`
 
 6. Install the required Python packages.
 ```sh
