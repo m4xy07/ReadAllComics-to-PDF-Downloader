@@ -175,9 +175,11 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
 
     pdf = FPDF("P", "mm", (PDF_W, PDF_H))
     page_num = 0
+    
     # so far the pages that were landscape oriented
     # had an aspect ratio of 4:3. Doesn't fit the usual page
     # hence the offset to at least keep it centered
+
     landscape_offset_x = (PDF_H - PDF_W * (4 / 3)) / 2
 
     for i, stored_path in enumerate(stored_page_paths):
@@ -203,7 +205,7 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
     pdf_path = f"pdfs/{name}.pdf"
     pdf.output(pdf_path)
     # Log the PDF path
-    print(f"handle_entry returning pdf_path={pdf_path}") #for dubugging
+    print(f"handle_entry returning pdf_path={pdf_path}") #for debugging
 
     if callback is not None:
         callback(pdf_path)

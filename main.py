@@ -60,7 +60,7 @@ def home():
             if result is not None:
                 return result
         except AssertionError:
-            return "Are you sure the URL to the comic is correct?"
+            return "Error! Unable to find comic. Are you sure the URL to the comic is correct?"
 
     return render_template('index.html')
 
