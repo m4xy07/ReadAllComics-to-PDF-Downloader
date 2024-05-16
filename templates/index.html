@@ -97,7 +97,7 @@
                             <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-block" value="Submit">
+                            <input id="submit-btn" type="submit" class="btn btn-primary btn-block" value="Submit">
                         </div>
                     </form>
                     <div class="progress mt-3">
@@ -134,16 +134,14 @@
         })
         </script>
     <script>
-        const socket = io.connect('http://' + document.domain + ':' + location.port);
+        const submitButton = document.getElementById('submit-btn');
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+        
 
-        socket.on('download_started', function(msg) {
-            // Refresh the page 5 seconds after the download starts
-            setTimeout(function() {
-                location.reload();
-            }, 5000);
-        });
-
-        document.addEventListener('DOMContentLoaded', (event) => {
+        submitButton.addEventListener('click', async (event) => {
+            await delay(5000);
+            const socket = io.connect('http://' + document.domain + ':' + location.port);
+            console.log("Button clicked")
             socket.on('progress', function(msg) {
                 // Log the progress update to the console
                 console.log('Received progress update:', msg);
@@ -152,6 +150,12 @@
                 const progressBar = document.getElementById('progress-bar');
                 progressBar.style.width = `${msg.progress * 100}%`;
                 progressBar.innerText = `${Math.round(msg.progress * 100)}%`;
+            });
+            socket.on('download_started', function(msg) {
+                // Refresh the page 5 seconds after the download starts
+                setTimeout(function() {
+                    location.reload();
+                }, 1000);
             });
         });
     </script>

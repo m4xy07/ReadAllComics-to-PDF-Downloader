@@ -88,7 +88,7 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
     num_pages = len(pages) - 1
     page_num = 0
     stored_page_paths = []
-    for page in pages:
+    for page in pages: #1
         socketio.emit('progress', {'progress': page_num / num_pages, 'status': Status.DOWNLOADING.value, 'name': name})
         print(
             make_status_string(
@@ -105,7 +105,7 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
         page_num += 1
     to_rotate_imgs = []
     images: list[tuple[Image.Image, int]] = []
-    for i, path in enumerate(stored_page_paths):
+    for i, path in enumerate(stored_page_paths): #2
         socketio.emit('progress', {'progress': i / num_pages, 'status': Status.CROPPING.value, 'name': name})
         fname = path
         images.append((img := Image.open(fname), i))
@@ -175,7 +175,7 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
 
     pdf = FPDF("P", "mm", (PDF_W, PDF_H))
     page_num = 0
-    
+
     # so far the pages that were landscape oriented
     # had an aspect ratio of 4:3. Doesn't fit the usual page
     # hence the offset to at least keep it centered
