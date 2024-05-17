@@ -1,3 +1,5 @@
+from gevent import monkey
+monkey.patch_all()
 from flask import Flask, request, render_template, send_file, after_this_request
 from flask_socketio import SocketIO
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -5,7 +7,8 @@ import os
 import time
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='gevent') # for local instance
+#socketio = SocketIO(app, async_mode='eventlet') # for server instance with eventlet/gunicorn
 
 from rad import main as handle_entry
 
@@ -52,6 +55,8 @@ def home():
         url = request.form.get('url')
         name = request.form.get('name')  
         print(f"Calling handle_entry with url={url}, name={name}")
+        if url is None or name is None:
+            return "Error: Missing URL or name"
         try:
             # Emit the 'download_started' event
             socketio.emit('download_started', {'message': 'Download started'})
@@ -64,5 +69,11 @@ def home():
 
     return render_template('index.html')
 
-if __name__ == '__main__':
-    socketio.run(app, debug=True)
+#if __name__ == '__main__': # you need this to run locally
+#    socketio.run(app, debug=False)
+
+#if __name__ == '__main__': # to run on server via gunicorn/eventlet
+    #app.run(debug=False)
+    #eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 5000)), app)
+    #socketio.run(app, debug=False)
+

@@ -10,10 +10,6 @@ from status.status import Status, get_status_length
 
 from flask_socketio import SocketIO
 
-__author__ = "nighmared & m4xy07" # credits to nighmared for the original script
-__version__ = 1.36 
-
-
 DEBUG = False  # makes it more verbose
 PDF_H = 300  # Height of resulting PDF
 PDF_W = 200  # Width of resulting PDF
@@ -205,7 +201,7 @@ def handle_entry(url: str, name: str, socketio: SocketIO, callback=None) -> str:
     pdf_path = f"pdfs/{name}.pdf"
     pdf.output(pdf_path)
     # Log the PDF path
-    print(f"handle_entry returning pdf_path={pdf_path}") #for debugging
+    #print(f"handle_entry returning pdf_path={pdf_path}") #for debugging
 
     if callback is not None:
         callback(pdf_path)
