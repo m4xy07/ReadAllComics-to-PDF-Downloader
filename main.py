@@ -77,3 +77,9 @@ def home():
     #eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 5000)), app)
     #socketio.run(app, debug=False)
 
+if __name__ == '__main__':
+    from gevent.pywsgi import WSGIServer
+    from geventwebsocket.handler import WebSocketHandler
+    http_server = WSGIServer(('127.0.0.1',5000), app, handler_class=WebSocketHandler)
+    http_server.serve_forever()
+
