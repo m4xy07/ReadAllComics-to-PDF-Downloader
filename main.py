@@ -54,7 +54,7 @@ def home():
     if request.method == 'POST':
         url = request.form.get('url')
         name = request.form.get('name')  
-        print(f"Calling handle_entry with url={url}, name={name}")
+        print(f"Calling handle_entry with url={url}, name={name}") #debug
         if url is None or name is None:
             return "Error: Missing URL or name"
         try:
