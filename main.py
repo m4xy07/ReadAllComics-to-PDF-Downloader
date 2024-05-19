@@ -16,7 +16,7 @@ def delete_file(path):
     if os.path.exists(path):
         os.remove(path)
     else:
-        print(f"Error: {path} does not exist")
+        print(f"Error: {path} does not exist") #debug
 
 def handle_entry_callback(pdf_path, filename):
     print(f"Received pdf_path: {pdf_path}")
