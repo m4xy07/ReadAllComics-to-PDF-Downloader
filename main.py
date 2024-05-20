@@ -1,5 +1,5 @@
-from gevent import monkey
-monkey.patch_all()
+from gevent import monkey #for server instance
+monkey.patch_all() #for server instance
 from flask import Flask, request, render_template, send_file, after_this_request
 from flask_socketio import SocketIO
 from apscheduler.schedulers.background import BackgroundScheduler
