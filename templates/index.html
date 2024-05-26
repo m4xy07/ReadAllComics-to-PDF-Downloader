@@ -142,7 +142,7 @@
             await delay(300);
             submitButton.value = "Please Wait...";
             await delay(4700);
-            const socket = io.connect('http://' + document.domain + ':' + location.port);
+            const socket = io.connect('https://' + document.domain + ':' + location.port);
             //console.log("Button clicked") // Debugging
             socket.on('progress', function(msg) {
                 // Log the progress update to the console
