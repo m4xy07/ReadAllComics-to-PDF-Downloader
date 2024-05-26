@@ -9,6 +9,16 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Poppins Font -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"
+    />
     <style>
       body,
       html {
@@ -45,6 +55,7 @@
       label {
         color: #fff;
       }
+
       #url::placeholder,
       #name::placeholder {
         color: #ccc;
@@ -288,6 +299,7 @@
     <!-- Vanta.js and its dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
+
     <script>
       VANTA.WAVES({
         el: "#vanta-bg",
@@ -321,7 +333,8 @@
           return;
         }
         await delay(300);
-        submitButton.textContent = "Please Wait...";
+        submitButton.innerHTML =
+          '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Please Wait...';
         await delay(4700);
         const socket = io.connect(
           "https://" + document.domain + ":" + location.port
