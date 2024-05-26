@@ -98,6 +98,43 @@
       .progress-bar {
         background-color: #4198f5;
       }
+      .btnsub {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 30px 0;
+        position: relative;
+      }
+      .btn-sub {
+        font-family: "Open Sans", sans-serif;
+        font-size: 16px;
+        letter-spacing: 2px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #196bc3c8;
+        cursor: pointer;
+        border: 3px solid;
+        padding: 0.25em 0.5em;
+        box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px,
+          4px 4px 0px 0px, 5px 5px 0px 0px;
+        position: relative;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+
+      .btn-sub:active {
+        box-shadow: 0px 0px 0px 0px;
+        top: 5px;
+        left: 5px;
+      }
+
+      @media (min-width: 768px) {
+        .btn-sub {
+          padding: 0.25em 0.75em;
+        }
+      }
     </style>
   </head>
 
@@ -160,13 +197,16 @@
                   <i></i>
                 </span>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <input
                   id="submit-btn"
                   type="submit"
                   class="btn btn-primary btn-block"
                   value="Submit"
                 />
+              </div> -->
+              <div class="btnsub">
+                <button id="submit-btn" class="btn-sub">Submit</button>
               </div>
             </form>
             <div class="progress mt-3">
@@ -216,7 +256,7 @@
 
       submitButton.addEventListener("click", async (event) => {
         await delay(300);
-        submitButton.value = "Please Wait...";
+        submitButton.textContent = "Please Wait...";
         await delay(4700);
         const socket = io.connect(
           "https://" + document.domain + ":" + location.port
