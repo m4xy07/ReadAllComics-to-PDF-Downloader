@@ -45,6 +45,10 @@
       label {
         color: #fff;
       }
+      #url::placeholder,
+      #name::placeholder {
+        color: #ccc;
+      }
       /* form input[type="text"] {
             background-color: #333;
             color: #fff;
@@ -54,6 +58,7 @@
             background-color: #ede9e9;
             outline: none;
         } */
+
       .form-group .form-control {
         width: 100%;
         box-sizing: border-box;
@@ -62,6 +67,7 @@
         border: 1px solid #535252;
         padding: 7px 14px 9px;
         transition: 0.4s;
+        caret-color: #4198f5; /* Change 'red' to any color you want */
       }
 
       .form-group .form-control:focus {
@@ -301,6 +307,19 @@
       const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
       submitButton.addEventListener("click", async (event) => {
+        const urlInput = document.getElementById("url");
+        const nameInput = document.getElementById("name");
+
+        if (!urlInput.value || !nameInput.value) {
+          event.preventDefault();
+          alert("Please fill in all fields before submitting.");
+          return;
+        }
+        if (!urlInput.value.startsWith("https://readallcomics.com/")) {
+          event.preventDefault();
+          alert("It only supports downloading comics from readallcomics.com");
+          return;
+        }
         await delay(300);
         submitButton.textContent = "Please Wait...";
         await delay(4700);
