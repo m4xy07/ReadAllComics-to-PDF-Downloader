@@ -1,46 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>RAC Downloader</title>
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            background: #000;
-            overflow: hidden;
-        }
-        #vanta-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .content {
-            position: relative;
-        }
-        .navbar, .footer {
-            background-color: #222;
-        }
-        .footer {
-            background-color: #ffffff00; 
-            color: #fff; 
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-            padding: 10px 0; 
-}
-        h2, label {
-            color: #fff;
-        }
-        form input[type="text"] {
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        background: #000;
+        overflow: hidden;
+      }
+      #vanta-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .content {
+        position: relative;
+      }
+      .navbar,
+      .footer {
+        background-color: #222;
+      }
+      .footer {
+        background-color: #ffffff00;
+        color: #fff;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+      h2,
+      label {
+        color: #fff;
+      }
+      /* form input[type="text"] {
             background-color: #333;
             color: #fff;
             border: none;
@@ -48,67 +53,139 @@
         form input[type="text"]:focus {
             background-color: #ede9e9;
             outline: none;
-        }
-        .progress {
-             background-color: #333;
-             border: 1px solid #007bff; 
-             height: 20px;
-             border-radius: 3px;
-        }
-        .progress-bar {
-            background-color: #4198f5;
-        }
-    </style>
-</head>
+        } */
+      .form-group .form-control:focus {
+        outline: none;
+      }
 
-<body>
+      .form-group {
+        /* width: 80%; */
+        margin: 40px 3%;
+        position: relative;
+      }
+
+      .form-group .form-control {
+        width: 100%;
+        box-sizing: border-box;
+        letter-spacing: 1px;
+        background-color: #f5f6fd;
+        border: 0;
+        padding: 7px 0;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .form-group .form-control ~ .focus-border {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background-color: #6c5dd3;
+        transition: 0.4s;
+      }
+
+      .form-group .form-control:focus ~ .focus-border {
+        width: 100%;
+        transition: 0.4s;
+        left: 0;
+      }
+      .progress {
+        background-color: #333;
+        border: 1px solid #007bff;
+        height: 20px;
+        border-radius: 3px;
+      }
+      .progress-bar {
+        background-color: #4198f5;
+      }
+    </style>
+  </head>
+
+  <body>
     <div id="vanta-bg"></div>
     <div class="content">
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="https://rac.m4xy.org/">RAC Downloader</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/m4xy07">GitHub</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="mailto:hey@m4xy.org">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://m4xy.org">Webpage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/m4xy07/ReadAllComics-to-PDF-Downloader">Project Repo</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <h2 class="text-center mb-3">Comic Downloader</h2>
-                    <form method="POST">
-                        <div class="form-group">
-                            <label for="url">URL:</label>
-                            <input type="text" class="form-control" id="url" name="url" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <input id="submit-btn" type="submit" class="btn btn-primary btn-block" value="Submit">
-                        </div>
-                    </form>
-                    <div class="progress mt-3">
-                        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="https://rac.m4xy.org/">RAC Downloader</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/m4xy07">GitHub</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="mailto:hey@m4xy.org">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://m4xy.org">Webpage</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://github.com/m4xy07/ReadAllComics-to-PDF-Downloader"
+                >Project Repo</a
+              >
+            </li>
+          </ul>
         </div>
-        <div class="footer">
-            <p>Made with 💖 by <a href="https://github.com/m4xy07">m4xy07</a></p>
+      </nav>
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <h2 class="text-center mb-3">Comic Downloader</h2>
+            <form method="POST">
+              <div class="form-group">
+                <!-- <label for="url">URL:</label> -->
+                <input
+                  type="text"
+                  class="form-control"
+                  id="url"
+                  name="url"
+                  placeholder=" Enter Comic URL"
+                  required
+                />
+                <span class="focus-border">
+                  <i></i>
+                </span>
+              </div>
+              <div class="form-group">
+                <!-- <label for="name">Name:</label> -->
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder=" Enter File Name"
+                  required
+                />
+                <span class="focus-border">
+                  <i></i>
+                </span>
+              </div>
+              <div class="form-group">
+                <input
+                  id="submit-btn"
+                  type="submit"
+                  class="btn btn-primary btn-block"
+                  value="Submit"
+                />
+              </div>
+            </form>
+            <div class="progress mt-3">
+              <div
+                id="progress-bar"
+                class="progress-bar"
+                role="progressbar"
+                style="width: 0%"
+                aria-valuenow="0"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="footer">
+        <p>Made with 💖 by <a href="https://github.com/m4xy07">m4xy07</a></p>
+      </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -120,47 +197,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
     <script>
-        VANTA.WAVES({
-          el: "#vanta-bg",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: true,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
-          waveHeight: 26.50,
-          color: 0x1b1d1d
-        })
-        </script>
-    <script>
-        const submitButton = document.getElementById('submit-btn');
-        const delay = ms => new Promise(res => setTimeout(res, ms));
-        
-
-        submitButton.addEventListener('click', async (event) => {
-            await delay(300);
-            submitButton.value = "Please Wait...";
-            await delay(4700);
-            const socket = io.connect('https://' + document.domain + ':' + location.port);
-            //console.log("Button clicked") // Debugging
-            socket.on('progress', function(msg) {
-                // Log the progress update to the console
-                //console.log('Received progress update:', msg);
-
-                // Update the UI with the progress
-                const progressBar = document.getElementById('progress-bar');
-                progressBar.style.width = `${msg.progress * 100}%`;
-                progressBar.innerText = `${Math.round(msg.progress * 100)}%`;
-            });
-            socket.on('download_started', function(msg) {
-                // Refresh the page 5 seconds after the download starts
-                setTimeout(function() {
-                    location.reload();
-                }, 3000);
-            });
-        });
+      VANTA.WAVES({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: true,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        waveHeight: 26.5,
+        color: 0x1b1d1d,
+      });
     </script>
-</body>
+    <script>
+      const submitButton = document.getElementById("submit-btn");
+      const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
+      submitButton.addEventListener("click", async (event) => {
+        await delay(300);
+        submitButton.value = "Please Wait...";
+        await delay(4700);
+        const socket = io.connect(
+          "https://" + document.domain + ":" + location.port
+        );
+        //console.log("Button clicked") // Debugging
+        socket.on("progress", function (msg) {
+          // Log the progress update to the console
+          //console.log('Received progress update:', msg);
+
+          // Update the UI with the progress
+          const progressBar = document.getElementById("progress-bar");
+          progressBar.style.width = `${msg.progress * 100}%`;
+          progressBar.innerText = `${Math.round(msg.progress * 100)}%`;
+        });
+        socket.on("download_started", function (msg) {
+          // Refresh the page 5 seconds after the download starts
+          setTimeout(function () {
+            location.reload();
+          }, 3000);
+        });
+      });
+    </script>
+  </body>
 </html>
