@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RAC Downloader</title>
+    <title>Comic Downloader</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -161,6 +161,36 @@
       .progress-bar {
         background-color: #4198f5;
       }
+      @keyframes typewriter {
+        from {
+          width: 0;
+        }
+
+        to {
+          width: 100%;
+        }
+      }
+
+      .typewriter {
+        overflow: hidden;
+        border-right: 0.15em solid #4198f5;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.15em;
+        animation: typewriter 4s steps(44, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+
+        50% {
+          border-color: #4198f5;
+        }
+      }
       .btnsub {
         display: flex;
         justify-content: center;
@@ -232,7 +262,7 @@
       <div class="container mt-5">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <h2 class="text-center mb-3">Comic Downloader</h2>
+            <h2 class="text-center mb-3 typewriter">Comic Downloader</h2>
             <form method="POST">
               <div class="form-group">
                 <!-- <label for="url">URL:</label> -->
@@ -277,7 +307,7 @@
             <div class="progress mt-3">
               <div
                 id="progress-bar"
-                class="progress-bar"
+                class="progress-bar progress-bar-striped progress-bar-animated"
                 role="progressbar"
                 style="width: 0%"
                 aria-valuenow="0"
