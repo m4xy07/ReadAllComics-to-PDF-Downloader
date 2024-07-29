@@ -1,5 +1,5 @@
 # Website
-Check it out @ https://comic.m4xy.org
+Check it out @ https://comic.m4xy.xyz
 
 # ReadAllComics-to-PDF-Downloader
 
